@@ -213,7 +213,7 @@ class _CategerioslistState extends State<Categerioslist> {
                                         ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.blue,
-                                            fixedSize: Size(100, 50),
+                                            fixedSize: Size(120, 50),
                                             shape: BeveledRectangleBorder(
                                               borderRadius: BorderRadius.circular(2)
                                             )
@@ -221,7 +221,7 @@ class _CategerioslistState extends State<Categerioslist> {
                                           onPressed: (){
                                             Navigator.pop(context);
                                           }, child: Text("Cancle", style: TextStyle(
-                          
+                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),)),
@@ -251,6 +251,7 @@ class _CategerioslistState extends State<Categerioslist> {
                                           }, child: Text("Save", style: TextStyle(
                           
                           fontWeight: FontWeight.bold,
+                          fontSize: 18,
                           color: Colors.white,
                         ),))
                                       ],
@@ -340,9 +341,9 @@ class _CategerioslistState extends State<Categerioslist> {
                         padding: EdgeInsets.all(15),
                         child: TextField(
                           controller: bcmtitle,
-                          decoration: InputDecoration(
+                          decoration: InputDecoration(                            
                             hintText: "Enter Title ",
-                            border: OutlineInputBorder(
+                            border: OutlineInputBorder(                             
                               borderSide: BorderSide(color: Colors.grey),
                             ),
                           ),
