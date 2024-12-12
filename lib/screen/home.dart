@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopirox_app/screen/bucategoris/categerioslist.dart';
+
+import 'package:shopirox_app/screen/businesscategeris.dart/categerioslist.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

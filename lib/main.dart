@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:shopirox_app/screen/bucategoris/Edditscreen.dart';
-
-import 'package:shopirox_app/screen/bucategoris/categerioslist.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopirox_app/screen/home.dart';
+import 'package:shopirox_app/screen/login.dart';
 
 
 void main() {
   runApp(const MyApp());
+ getdata();
 }
+var islogin1 =false;
+void getdata()async{
+var data=await SharedPreferences.getInstance();
+     data.getString("login");
+     if(data.getString("login")==null){
+      islogin1=true;
+      
+     }
+     else{
+      islogin1=false;
+     }
+     
+  }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -23,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Categerioslist()
+      home:islogin1==true?login():Home(),
     );
   }
 }

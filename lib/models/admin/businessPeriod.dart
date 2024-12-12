@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class Buperiod {
+class businessPeriod {
 
   String Id;
   String adminId;
@@ -9,7 +9,7 @@ class Buperiod {
   String BpmDelete;
   String BpmIsActive;
 
-  Buperiod({
+  businessPeriod({
 required  this.Id,
 required this.adminId,
 required this.BpmTitle,
@@ -31,8 +31,8 @@ required this.BpmIsActive
     
   }
 
-  factory Buperiod.fromjason(Map<String,dynamic>item){
-      return Buperiod(
+  factory businessPeriod.fromjason(Map<String,dynamic>item){
+      return businessPeriod(
         Id: item["id"],
         adminId:item["adminId"] ,
          BpmTitle: item["bpmTitle"], 

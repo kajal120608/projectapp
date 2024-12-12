@@ -3,9 +3,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:shopirox_app/models/admin/AdminModel.dart';
 import 'package:shopirox_app/models/admin/tokenModel.dart';
-import 'package:shopirox_app/screen/bucategoris/bucategeris.dart';
+
+import 'package:shopirox_app/screen/home.dart';
 import 'package:shopirox_app/services/admin/Adminservice.dart';
 
 class login extends StatefulWidget {
@@ -24,6 +26,7 @@ class _loginState extends State<login> {
   
   Tokenmodel ?details;
   var response;
+ 
   
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,8 @@ class _loginState extends State<login> {
         backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: Colors.white,
-      
-         title: Image.asset('asset/images/k.gif',height: 100,width: 200,),
+      title: Text("Login"),
+        //  title: Image.asset('asset/images/ka.png',height: 100,width: 200,),
         centerTitle: true,
       ),
       body:
@@ -98,15 +101,19 @@ class _loginState extends State<login> {
                       
 
                       if(result.responsemsg=="Success"){
+
                         var data = await SharedPreferences.getInstance();
                        data.setString("userId", result.Id.toString()); 
+                       data.setString("token", result.token.toString());
+                       data.setString("login",result.responsemsg.toString());
                         print("User ID stored in SharedPreferences: ${result.Id}");
                         
-                          
+                        
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => Home(),));
                         setState(() {
                           
                         });
-                         Navigator.push(context,MaterialPageRoute(builder: (context) => Bucategeris(),));
+                       
 
                       }
                       else{

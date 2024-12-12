@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopirox_app/models/categarios/bussinesscategarios.dart';
-import 'package:shopirox_app/screen/bucategoris/categerioslist.dart';
+import 'package:shopirox_app/models/admin/bussinesscategarios.dart';
+import 'package:shopirox_app/screen/businesscategeris.dart/categerioslist.dart';
+
+
 import 'package:shopirox_app/services/categories/categeriosService.dart';
 
 class Bucategeris extends StatefulWidget {
@@ -102,7 +104,7 @@ class _BucategerisState extends State<Bucategeris> {
                 AdminId:userId.toString(),
                 Bcmtitle: bcmtitle.text,
                 BcmSlug: bcmtitle.text.toLowerCase(),
-                BcmSeqNo: int.tryParse(bcmseqno.text) ?? 0,
+                BcmSeqNo: 0,
                 BcmActive: true,
                 BcmIsDelete: false
               );
