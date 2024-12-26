@@ -40,6 +40,7 @@ dependencies:
   shared_preferences: ^2.0.0 
   font_awesome_flutter: ^10.8.0 
   dropdown_button2: ^2.3.9
+  material_dialogs: ^1.1.5  
   
 
 dev_dependencies:

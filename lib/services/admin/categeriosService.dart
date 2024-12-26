@@ -73,7 +73,7 @@ print(result);
 
 String Seqnoapi="https://shopiroxapilocal.onrender.com/api/AdminBusinessCategory/GetSeqNo";
 
-Future<List<Bussinesscategarios>> GetSeqNo ()async{
+Future<String> GetSeqNo ()async{
    var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
     print("token"+token);
@@ -81,10 +81,8 @@ Future<List<Bussinesscategarios>> GetSeqNo ()async{
    headers: {'Content-Type': 'application/json', 'Authorization': token},
    
   );
-  List<dynamic> response=jsonDecode(result.body);
-  List<Bussinesscategarios> data=response.map((dynamic item) =>Bussinesscategarios.fromjason(item) ,).toList();
-  print(result);  
-  return data;
+  print(result.body);
+  return result.body;
 }
   
 }

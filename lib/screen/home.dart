@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:shopirox_app/screen/businesscategeris.dart/categerioslist.dart';
+import 'package:shopirox_app/screen/bussinessperiod/bussinesscrete.dart';
+import 'package:shopirox_app/screen/bussinessperiod/periodlist.dart';
+import 'package:shopirox_app/screen/bussinesstype/bussinesstypelist.dart';
+import 'package:shopirox_app/screen/seqno.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -60,8 +64,11 @@ class _HomeState extends State<Home> {
             title: "Business Period",
             subtitle: "Manage Business Period",
             color: const Color.fromARGB(255, 232, 206, 206),
-            onTap: ()
-            {}
+            onTap: () =>Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Periodlist()),
+            ),
+            
           ),
           buildMenuItem(
             context,
@@ -69,9 +76,10 @@ class _HomeState extends State<Home> {
             title: "Business Type",
             subtitle: "Manage Business Type",
              color: Colors.blue.shade100,
-            onTap: () {
-              
-            },
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Bussinesstypelist()),
+            ),
           ),
           buildMenuItem(
             context,

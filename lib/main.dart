@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shopirox_app/screen/bussinesstype/bussinesstypecreate.dart';
 import 'package:shopirox_app/screen/home.dart';
 import 'package:shopirox_app/screen/login.dart';
+
 
 
 void main() {
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:islogin1==true?login():Home(),
+      home://Bussinesstypecreate()
+      islogin1==true?login():Home(),
     );
   }
 }

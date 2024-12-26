@@ -1,18 +1,20 @@
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopirox_app/models/admin/businessPeriod.dart';
-import 'package:shopirox_app/screen/home.dart';
-import 'package:shopirox_app/services/categories/businessPeriodService.dart';
+import 'package:shopirox_app/screen/bussinessperiod/periodlist.dart';
+import 'package:shopirox_app/services/admin/businessPeriodService.dart';
 
-class buss extends StatefulWidget {
-  const buss({super.key});
+
+
+class Bussinesscrete extends StatefulWidget {
+  const Bussinesscrete({super.key});
 
   @override
-  State<buss> createState() => _bussState();
+  State<Bussinesscrete> createState() => _bussState();
 }
 
-class _bussState extends State<buss> {
+class _bussState extends State<Bussinesscrete> {
   var bpmtitle=TextEditingController();
   var bpmslug=TextEditingController();
   var   bpmseqno=TextEditingController();
@@ -100,14 +102,14 @@ class _bussState extends State<buss> {
                 adminId:userId.toString(),
                 BpmTitle: bpmtitle.text,
                 
-                BpmSeqNo: "1",
-                BpmIsActive: "",
-                BpmDelete: "",
+                BpmSeqNo: 0,
+                BpmIsActive: true,
+                BpmDelete: false,
               );
               print(categary);
              
              var result=await bussinesperiodservice.create(categary);
-             Navigator.push(context,MaterialPageRoute(builder: (context) => Home(),));
+             Navigator.push(context,MaterialPageRoute(builder: (context) => Periodlist(),));
              setState(() {
                
              });
@@ -119,6 +121,6 @@ class _bussState extends State<buss> {
         ),
       )
       )
-    );;
+    );
   }
 }

@@ -1,64 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopirox_app/models/admin/bussinesscategarios.dart';
-import 'package:shopirox_app/screen/businesscategeris.dart/bussinesscategeris.dart';
-import 'package:shopirox_app/services/admin/categeriosService.dart';
+import 'package:shopirox_app/models/admin/businessPeriod.dart';
+import 'package:shopirox_app/services/admin/businessPeriodService.dart';
 
 
-
-class Categerioslist extends StatefulWidget {
-  const Categerioslist({super.key});
+class Periodlist extends StatefulWidget {
+  const Periodlist({super.key});
 
   @override
-  State<Categerioslist> createState() => _CategerioslistState();
+  State<Periodlist> createState() => _PeriodlistState();
 }
 
-class _CategerioslistState extends State<Categerioslist> {
-  var cbservice = Categeriosservice();
-  late List<Bussinesscategarios> catelist;
-  List<Bussinesscategarios> datalist = [];
+class _PeriodlistState extends State<Periodlist> {
 
-   
+  var periodservice=businessPeriodService();
+ late List<businessPeriod> Perioddetails;
+ List<businessPeriod> periodlist=[];
 
-  @override
+ @override
   void initState() {
+    // TODO: implement initState
     super.initState();
     getdata();
-    Getlist();
-   
+    Getdata();
+    print("initstate");
   }
 
-  void Getlist() async {
-    catelist = await cbservice.Getlist();
-    datalist = catelist;
-    setState(() {});
+  getdata() async{
+    print("data");
+   Perioddetails=await periodservice.Getlist();
+   periodlist=Perioddetails;
+
+   setState(() {
+     
+   });
   }
 
-  var bcmtitle = TextEditingController();
-  var bcmseqno = TextEditingController();
-  var Eddittitle=TextEditingController();
-  String? userId;
 
-   void getdata() async {
-    var data = await SharedPreferences.getInstance();
+   var bpmtitle=TextEditingController();
+  var bpmslug=TextEditingController();
+  var   bpmseqno=TextEditingController();
+ 
+ String? userId;
+
+ 
+
+  void Getdata() async{
+ 
+ var data = await SharedPreferences.getInstance();
     userId = data.getString("userId");
 
-    setState(() {});
+  setState(() {
+    
+  });
+ 
   }
 
- 
-
- 
-
+var Eddittitle=TextEditingController();
   
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromARGB(255, 234, 199, 234).withOpacity(0.6),
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+        appBar: AppBar(
         
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -74,7 +78,7 @@ class _CategerioslistState extends State<Categerioslist> {
           ),
         ),
         title: Text(
-          "Categories List",
+          "Period List",
           style: TextStyle(
             color: const Color.fromARGB(255, 72, 33, 243),
             fontSize: 22,
@@ -85,28 +89,22 @@ class _CategerioslistState extends State<Categerioslist> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: datalist.isEmpty
-          
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              
-              itemCount: datalist.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    // Handle tap if needed
-                  },
-                  child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+      body: periodlist.isEmpty?Center(
+         child: CircularProgressIndicator(),
+      ):ListView.builder(itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            
+          },
+          child: Card(
+            margin: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
                      clipBehavior: Clip.antiAlias,
-                    child: ExpansionTile(
-                    enabled: true,
+                     child: ExpansionTile(
+                      enabled: true,
                       minTileHeight: 70,
                       
                shape: RoundedRectangleBorder(
@@ -117,27 +115,21 @@ class _CategerioslistState extends State<Categerioslist> {
                       //backgroundColor: Colors.blue.shade50,
                       backgroundColor: Colors.grey[300],
                       collapsedBackgroundColor: Colors.grey.shade200,
-                      title: Text(
-                        datalist[index].Bcmtitle,
+                       title: Text(
+                        periodlist[index].BpmTitle,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           // color: const Color.fromARGB(255, 72, 33, 243),
                         ),
                       ),
-                      // leading: Text(sqno![index]),
-                      trailing: Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.pinkAccent,
-                      ),
                       children: [
-                       Row(
-                        
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              showBarModalBottomSheet(
-                                topControl: Center(),
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                  showBarModalBottomSheet(
+                                
                                 context: context, builder: (context) {
                                 return Container(
                                   height: 250,
@@ -168,7 +160,7 @@ class _CategerioslistState extends State<Categerioslist> {
                                        
                                         controller: Eddittitle,
                                         decoration: InputDecoration(
-                                         hintText: datalist[index].Bcmtitle,
+                                         hintText: periodlist[index].BpmTitle,
                                           border: OutlineInputBorder(
                                             
                                           ),
@@ -177,20 +169,19 @@ class _CategerioslistState extends State<Categerioslist> {
                                           ),
                                           
                                           suffixIcon: IconButton(onPressed: (){
-                                            var Edd=Bussinesscategarios(
-                          id: datalist[index].id,
-                         AdminId: datalist[index].AdminId,
-                        Bcmtitle: Eddittitle.text,
-                        BcmSlug: Eddittitle.text,
-                        BcmSeqNo: datalist[index].BcmSeqNo,
-                       BcmActive: datalist[index].BcmActive,
-                      BcmIsDelete: datalist[index].BcmIsDelete);
+                                           var Edd=businessPeriod(
+                                            Id: periodlist[index].Id, 
+                                            adminId: periodlist[index].adminId, 
+                                            BpmTitle: Eddittitle.text,
+                                            BpmSeqNo: periodlist[index].BpmSeqNo,
+                                            BpmDelete: periodlist[index].BpmDelete,
+                                             BpmIsActive: periodlist[index].BpmIsActive);
 
-                      cbservice.eddit(Edd);
-                      setState(() {
-                        
-                      });
-                           
+                                             periodservice.eddit(Edd);
+                                             setState(() {
+                                               
+                                             });
+                                              
                                           }, icon: Icon(Icons.edit_outlined,color: Colors.green,size: 30,)),
                                         ),
                                       ),
@@ -227,16 +218,17 @@ class _CategerioslistState extends State<Categerioslist> {
                                             )
                                           ),
                                           onPressed: (){
-                                             var Edd=Bussinesscategarios(
-                          id: datalist[index].id,
-                         AdminId: datalist[index].AdminId,
-                        Bcmtitle: Eddittitle.text,
-                        BcmSlug: Eddittitle.text,
-                        BcmSeqNo: datalist[index].BcmSeqNo,
-                       BcmActive: datalist[index].BcmActive,
-                      BcmIsDelete: datalist[index].BcmIsDelete);
+                                           var Edd=businessPeriod(
+                                            Id: periodlist[index].Id, 
+                                            adminId: periodlist[index].adminId, 
+                                            BpmTitle: Eddittitle.text,
+                                            BpmSeqNo: periodlist[index].BpmSeqNo,
+                                            BpmDelete: periodlist[index].BpmDelete,
+                                             BpmIsActive: periodlist[index].BpmIsActive);
 
-                      cbservice.eddit(Edd);
+                                             periodservice.eddit(Edd);
+                                             
+                                              
                       setState(() {
                         
                       });
@@ -253,8 +245,8 @@ class _CategerioslistState extends State<Categerioslist> {
                                   ),
                                 );
                               },);
-                            },
-                            child:  Container(
+                              },
+                             child:  Container(
                             height: 50,
                             width: 150,
                             margin: EdgeInsets.all(10),
@@ -268,20 +260,19 @@ class _CategerioslistState extends State<Categerioslist> {
                               title: Text("Eddit",style: TextStyle(color: Colors.white,fontSize: 20,),),
                             )
                           ),
-                          ),
-                       InkWell(
-                        onTap: () {
-                           var del=Bussinesscategarios(
-                            id: datalist[index].id ,
-                            AdminId:datalist[index].AdminId,
-                            Bcmtitle: datalist[index].Bcmtitle,
-                            BcmSlug: datalist[index].BcmSlug,
-                            BcmSeqNo: datalist[index].BcmSeqNo,
-                            BcmActive: datalist[index].BcmActive,
-                            BcmIsDelete: datalist[index].BcmIsDelete
-                            );
+                            ),
 
-                             cbservice.Delete(del);
+                             InkWell(
+                        onTap: () {
+                           var del=businessPeriod(
+                            Id: periodlist[index].Id, 
+                            adminId: periodlist[index].adminId,
+                            BpmTitle: periodlist[index].BpmTitle,
+                             BpmSeqNo: periodlist[index].BpmSeqNo, 
+                             BpmDelete: periodlist[index].BpmDelete,
+                              BpmIsActive: periodlist[index].BpmIsActive);
+
+                             periodservice.Delete(del);
                             
                             setState(() {
                               
@@ -304,32 +295,98 @@ class _CategerioslistState extends State<Categerioslist> {
                           ),
                         
                        )
-                        ],
-                       )
+                          ],
+                        )
                       ],
+                     ),
+          ),
+        );
+      },
+      itemCount: periodlist.length,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){
+        showBarModalBottomSheet(
+          context: context, builder: (context) {
+          return Container(
+            height: 500,
+            child: Container(
+              //color: Colors.blue.shade100,
+        height: 300,
+            width: 350,
+           margin: EdgeInsets.fromLTRB(10, 80, 10, 80),
+            child:Card(
+              color: Colors.blue[50],
+              elevation: 1,
+        child: Column(
+          children: [
+             SizedBox(height: 20,),
+             Container(
+              
+                    padding: EdgeInsets.all(15),
+                    child: TextField(
+                     controller:bpmtitle ,
+                    decoration: InputDecoration(
+                      
+                      hintText: "Enter Title ",
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)
+                      ),
+                  
                     ),
                   ),
-                );
-              },
-            ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            backgroundColor: Colors.lightBlue.shade100,
-            isScrollControlled: true,
-            context: context,
-            builder: (context) {
-              return Bucategeris();
-            },
-          );
-        },
-        backgroundColor: Colors.pinkAccent,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 30,
+                    ),
+
+                    
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: TextField(
+                     controller: bpmseqno,
+                    decoration: InputDecoration(
+                      hintText: "Enter Seq No",
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)
+                      ),
+                  contentPadding: EdgeInsets.all(20)
+                    ),
+                  ),
+                    ),
+            
+             SizedBox(height: 20,),
+             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                
+              ),
+              onPressed: ()async{
+
+              var categary= businessPeriod(
+                Id: "00000000000000000000" ,
+                adminId:userId.toString(),
+                BpmTitle: bpmtitle.text,
+                
+                BpmSeqNo: 0,
+                BpmIsActive: true,
+                BpmDelete: false,
+              );
+              print(categary);
+             
+             var result=await periodservice.create(categary);
+             Navigator.push(context,MaterialPageRoute(builder: (context) => Periodlist(),));
+             setState(() {
+               
+             });
+          
+             }, child: Text("Submit")),
+
+            
+          ],
         ),
+      )
       ),
+          );
+        },);
+      }),
     );
   }
 }

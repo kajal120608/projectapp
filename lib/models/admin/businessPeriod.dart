@@ -1,13 +1,13 @@
-import 'package:flutter/foundation.dart';
+
 
 class businessPeriod {
 
   String Id;
   String adminId;
   String BpmTitle;
-  String BpmSeqNo;
-  String BpmDelete;
-  String BpmIsActive;
+  int BpmSeqNo;
+  bool BpmDelete;
+  bool BpmIsActive;
 
   businessPeriod({
 required  this.Id,
@@ -34,11 +34,11 @@ required this.BpmIsActive
   factory businessPeriod.fromjason(Map<String,dynamic>item){
       return businessPeriod(
         Id: item["id"],
-        adminId:item["adminId"] ,
-         BpmTitle: item["bpmTitle"], 
-         BpmSeqNo: item["bpmSeqNo"],
-         BpmDelete: item["bpmDelete"],
-           BpmIsActive: item["bpmIsActive"]);
+       adminId:item["adminId"] ,
+       BpmTitle: item["bpmTitle"], 
+       BpmSeqNo: item["bpmSeqNo"],
+       BpmDelete: item["bpmIsDelete"],
+       BpmIsActive: item["bpmActive"]);
   }
   
 }

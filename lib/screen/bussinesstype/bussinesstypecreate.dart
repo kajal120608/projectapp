@@ -1,34 +1,31 @@
-
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopirox_app/models/admin/bussinesscategarios.dart';
-import 'package:shopirox_app/screen/businesscategeris.dart/categerioslist.dart';
-import 'package:shopirox_app/services/admin/categeriosService.dart';
+import 'package:shopirox_app/models/admin/bussinesstype.dart';
+import 'package:shopirox_app/screen/bussinesstype/bussinesstypelist.dart';
+import 'package:shopirox_app/screen/home.dart';
+import 'package:shopirox_app/services/admin/bussinesstypeservice.dart';
 
-
-
-class Bucategeris extends StatefulWidget {
-  const Bucategeris({super.key});
+class Bussinesstypecreate extends StatefulWidget {
+  const Bussinesstypecreate({super.key});
 
   @override
-  State<Bucategeris> createState() => _BucategerisState();
+  State<Bussinesstypecreate> createState() => _BussinesstypecreateState();
 }
 
-class _BucategerisState extends State<Bucategeris> {
-  var cbservice = Categeriosservice();
-  var bcmtitle=TextEditingController();
-  var bcmslug=TextEditingController();
-  var   bcmseqno=TextEditingController();
+class _BussinesstypecreateState extends State<Bussinesstypecreate> {
+  var btmtitle=TextEditingController();
+ var btmseqno=TextEditingController();
  
  String? userId;
-String? sqno;
+
+ var typeservice=Bussinesstypeservice();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getdata();
-    seqNo();
   }
 
   void getdata() async{
@@ -42,26 +39,12 @@ String? sqno;
   });
  
   }
-   void seqNo()async{
- sqno=await cbservice.GetSeqNo();
-bcmseqno.text=sqno!;
-print(sqno);
-print("seqno");
- setState(() {
-   
- });
 
-  }
-
-  var bucateservice= Categeriosservice();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.lightBlue.shade100.withOpacity(0.3),
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade100,
-        centerTitle: true,
-        title: Text("Categories"),
+        title: Text("BussinessType"),
       ),
       body: Container(
         height: 300,
@@ -77,7 +60,7 @@ print("seqno");
               
                     padding: EdgeInsets.all(15),
                     child: TextField(
-                     controller:bcmtitle ,
+                     controller:btmtitle ,
                     decoration: InputDecoration(
                       
                       hintText: "Enter Title ",
@@ -93,7 +76,7 @@ print("seqno");
                   Padding(
                     padding: EdgeInsets.all(15),
                     child: TextField(
-                     controller: bcmseqno,
+                     controller: btmseqno,
                     decoration: InputDecoration(
                       hintText: "Enter Seq No",
                       border: OutlineInputBorder(
@@ -110,20 +93,17 @@ print("seqno");
                 
               ),
               onPressed: ()async{
+             var type=Bussinesstype(
+              id: "00000000000000000000",
+              AdminId: userId.toString(),
+              Btmtitle: btmtitle.text,
+              BtmSeqNo: 0, 
+              BtmActive: true, 
+              BtmIsDelete: false);
 
-              var categary= Bussinesscategarios(
-                id: "00000000000000000000" ,
-                AdminId:userId.toString(),
-                Bcmtitle: bcmtitle.text,
-                BcmSlug: bcmtitle.text.toLowerCase(),
-                BcmSeqNo:0,
-                BcmActive: true,
-                BcmIsDelete: false
-              );
-              print(categary);
-             
-             var result=await bucateservice.create(categary);
-            //  Navigator.push(context,MaterialPageRoute(builder: (context) => Categerioslist(),));
+             typeservice.create(type);
+              
+             Navigator.push(context,MaterialPageRoute(builder: (context) => Bussinesstypelist(),));
              setState(() {
                
              });
@@ -134,7 +114,7 @@ print("seqno");
           ],
         ),
       )
-      )
+      ),
     );
   }
 }
