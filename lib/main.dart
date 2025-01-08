@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopirox_app/screen/bussinesstype/bussinesstypecreate.dart';
 import 'package:shopirox_app/screen/home.dart';
 import 'package:shopirox_app/screen/login.dart';
+import 'package:shopirox_app/screen/splashscreen.dart';
 
 
 
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home://Bussinesstypecreate()
+      home://Splashscreen()
       islogin1==true?login():Home(),
     );
   }

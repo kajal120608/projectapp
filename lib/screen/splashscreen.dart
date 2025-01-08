@@ -1,11 +1,11 @@
-import 'dart:async';
+
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:material_dialogs/dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
-import 'package:shopirox_app/screen/login.dart';
+
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -35,9 +35,9 @@ class _SplashscreenState extends State<Splashscreen> {
       children: [
         MaterialButton(
           colorBrightness: Brightness.light,
-          height: 80,
+          height: 50,
       color: Colors.grey[300],
-      minWidth: double.infinity,
+      minWidth: 50,
       onPressed: () => Dialogs.materialDialog(
           msg: 'Are you sure ? you can\'t undo this',
           title: "Delete",
@@ -64,7 +64,7 @@ class _SplashscreenState extends State<Splashscreen> {
               iconColor: Colors.white,
             ),
           ]),
-      child: Text("Show Material Dialog"),
+      child: Icon(Icons.edit_rounded),
     )
       ],
     )

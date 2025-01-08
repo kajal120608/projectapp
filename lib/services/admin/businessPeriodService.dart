@@ -14,7 +14,7 @@ class businessPeriodService{
  var dataget = await SharedPreferences.getInstance();
 
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
     print(Period.tojson());
     
   var result=post(Uri.parse(Api),
@@ -32,7 +32,7 @@ class businessPeriodService{
   Future<List<businessPeriod>>  Getlist()async{
      var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
   var result =await get(Uri.parse(getapi),
    headers: {
     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ String apiEdit="https://shopiroxapilocal.onrender.com/api/AdminBusinessPeriod/Ed
 Future<void> eddit(businessPeriod Edd)async{
    var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
 print(Edd.BpmTitle);
 var result=await post(Uri.parse(apiEdit),
 headers: {'Content-Type': 'application/json', 'Authorization': token},
@@ -66,7 +66,7 @@ String Deletapi="https://shopiroxapilocal.onrender.com/api/AdminBusinessPeriod/D
 Future<void> Delete(businessPeriod Del)async{
  var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
 var result=await post(Uri.parse(Deletapi),
 headers: {'Content-Type': 'application/json', 'Authorization': token},
 body: jsonEncode(Del.tojson())
@@ -76,19 +76,19 @@ print(result);
 
 String Snoapi="https://shopiroxapilocal.onrender.com/api/AdminBusinessPeriod/GetSeqNo";
 
-Future<List<businessPeriod>> GetSeqNo ()async{
+Future<String> GetSeqNo ()async{
    var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
  var result =await get(Uri.parse(Snoapi),
    headers: {'Content-Type': 'application/json', 'Authorization': token},
    
   );
-  List<dynamic> response=jsonDecode(result.body);
-  List<businessPeriod> data=response.map((dynamic item) =>businessPeriod.fromjason(item) ,).toList();
-  print(result);  
-  return data;
+ 
+  return result.body;
 }
+
+
   
 }
 

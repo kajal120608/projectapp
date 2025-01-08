@@ -6,6 +6,7 @@ import 'package:shopirox_app/screen/bussinesstype/bussinesstypelist.dart';
 import 'package:shopirox_app/screen/home.dart';
 import 'package:shopirox_app/services/admin/bussinesstypeservice.dart';
 
+
 class Bussinesstypecreate extends StatefulWidget {
   const Bussinesstypecreate({super.key});
 
@@ -43,15 +44,18 @@ class _BussinesstypecreateState extends State<Bussinesstypecreate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.pink[50],
       appBar: AppBar(
+        backgroundColor: Colors.pink[100],
         title: Text("BussinessType"),
       ),
       body: Container(
         height: 300,
+       
             width: 350,
            margin: EdgeInsets.fromLTRB(10, 80, 10, 80),
             child:Card(
-              color: Colors.white,
+              color:   Colors.blue[100],
               elevation: 1,
         child: Column(
           children: [
@@ -88,6 +92,7 @@ class _BussinesstypecreateState extends State<Bussinesstypecreate> {
                     ),
             
              SizedBox(height: 20,),
+             
              ElevatedButton(
               style: ElevatedButton.styleFrom(
                 

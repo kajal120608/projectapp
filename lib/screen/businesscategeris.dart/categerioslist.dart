@@ -126,8 +126,9 @@ class _CategerioslistState extends State<Categerioslist> {
                         ),
                       ),
                       // leading: Text(sqno![index]),
-                      trailing: Icon(
-                        Icons.arrow_drop_down,
+                      trailing: IconButton(
+                        onPressed: (){},
+                        icon: Icon(Icons.arrow_drop_down),
                         color: Colors.pinkAccent,
                       ),
                       children: [
@@ -256,16 +257,15 @@ class _CategerioslistState extends State<Categerioslist> {
                             },
                             child:  Container(
                             height: 50,
-                            width: 150,
+                            width: 50,
                             margin: EdgeInsets.all(10),
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(10)),
                               color: Colors.blue,
                             ),
-                            child:ListTile(
-                              leading: Icon(Icons.edit_outlined,color: Colors.white,),
-                              title: Text("Eddit",style: TextStyle(color: Colors.white,fontSize: 20,),),
+                            child:Center(
+                              child:  Icon(Icons.edit_outlined,color: Colors.white,),
                             )
                           ),
                           ),
@@ -290,16 +290,15 @@ class _CategerioslistState extends State<Categerioslist> {
                         },
                         child:  Container(
                             height: 50,
-                            width: 150,
+                            width: 50,
                              margin: EdgeInsets.all(10),
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(10)),
                               color: Colors.red,
                             ),
-                            child:ListTile(
-                              leading: Icon(Icons.delete_outline,color: Colors.white,),
-                              title: Text("Delete",style: TextStyle(color: Colors.white,fontSize: 20,),),
+                            child:Center(
+                              child: Icon(Icons.delete_outline,color: Colors.white,),
                             )
                           ),
                         

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopirox_app/models/admin/businessPeriod.dart';
+import 'package:shopirox_app/screen/bussinessperiod/bussinesscrete.dart';
 import 'package:shopirox_app/services/admin/businessPeriodService.dart';
 
 
@@ -311,79 +312,7 @@ var Eddittitle=TextEditingController();
           context: context, builder: (context) {
           return Container(
             height: 500,
-            child: Container(
-              //color: Colors.blue.shade100,
-        height: 300,
-            width: 350,
-           margin: EdgeInsets.fromLTRB(10, 80, 10, 80),
-            child:Card(
-              color: Colors.blue[50],
-              elevation: 1,
-        child: Column(
-          children: [
-             SizedBox(height: 20,),
-             Container(
-              
-                    padding: EdgeInsets.all(15),
-                    child: TextField(
-                     controller:bpmtitle ,
-                    decoration: InputDecoration(
-                      
-                      hintText: "Enter Title ",
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)
-                      ),
-                  
-                    ),
-                  ),
-                    ),
-
-                    
-                  Padding(
-                    padding: EdgeInsets.all(15),
-                    child: TextField(
-                     controller: bpmseqno,
-                    decoration: InputDecoration(
-                      hintText: "Enter Seq No",
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)
-                      ),
-                  contentPadding: EdgeInsets.all(20)
-                    ),
-                  ),
-                    ),
-            
-             SizedBox(height: 20,),
-             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                
-              ),
-              onPressed: ()async{
-
-              var categary= businessPeriod(
-                Id: "00000000000000000000" ,
-                adminId:userId.toString(),
-                BpmTitle: bpmtitle.text,
-                
-                BpmSeqNo: 0,
-                BpmIsActive: true,
-                BpmDelete: false,
-              );
-              print(categary);
-             
-             var result=await periodservice.create(categary);
-             Navigator.push(context,MaterialPageRoute(builder: (context) => Periodlist(),));
-             setState(() {
-               
-             });
-          
-             }, child: Text("Submit")),
-
-            
-          ],
-        ),
-      )
-      ),
+            child: Bussinessperiodcrete()
           );
         },);
       }),

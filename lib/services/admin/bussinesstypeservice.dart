@@ -14,7 +14,7 @@ class Bussinesstypeservice {
  var dataget = await SharedPreferences.getInstance();
 
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
     print(type.tojson());
   var result=post(Uri.parse(Api),
   headers: {
@@ -31,7 +31,7 @@ class Bussinesstypeservice {
   Future<List<Bussinesstype>>  Getlist()async{
      var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
   var result =await get(Uri.parse(getapi),
    headers: {
     'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ String apiEdit="https://shopiroxapilocal.onrender.com/api/AdminBusinessType/Edit
 Future<void> eddit(Bussinesstype Edd)async{
    var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
 print(Edd.Btmtitle);
 var result=await post(Uri.parse(apiEdit),
 headers: {'Content-Type': 'application/json', 'Authorization': token},
@@ -65,7 +65,7 @@ String Deletapi="https://shopiroxapilocal.onrender.com/api/AdminBusinessType/Del
 Future<void> Delete(Bussinesstype Del)async{
  var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
 var result=await post(Uri.parse(Deletapi),
 headers: {'Content-Type': 'application/json', 'Authorization': token},
 body: jsonEncode(Del.tojson())
@@ -75,19 +75,17 @@ print(result);
 
 String Seqnoapi="https://shopiroxapilocal.onrender.com/api/AdminBusinessType/GetSeqNo";
 
-Future<List<Bussinesstype>> GetSeqNo ()async{
+Future<String> GetSeqNo ()async{
    var dataget = await SharedPreferences.getInstance();
     var token= "Bearer "+dataget.getString("token").toString();
-    print("token"+token);
+    // print("token"+token);
  var result =await get(Uri.parse(Seqnoapi),
    headers: {'Content-Type': 'application/json', 'Authorization': token},
    
   );
-  List<dynamic> response=jsonDecode(result.body);
-  print(result.body);
-  List<Bussinesstype> data=response.map((dynamic item) =>Bussinesstype.fromjason(item) ,).toList();
+  
   print(result);  
-  return data;
+  return result.body;
 }
   
 }

@@ -7,25 +7,26 @@ import 'package:shopirox_app/services/admin/businessPeriodService.dart';
 
 
 
-class Bussinesscrete extends StatefulWidget {
-  const Bussinesscrete({super.key});
+class Bussinessperiodcrete extends StatefulWidget {
+  const Bussinessperiodcrete({super.key});
 
   @override
-  State<Bussinesscrete> createState() => _bussState();
+  State<Bussinessperiodcrete> createState() => _BussinessperiodcreteState();
 }
 
-class _bussState extends State<Bussinesscrete> {
+class _BussinessperiodcreteState extends State<Bussinessperiodcrete> {
   var bpmtitle=TextEditingController();
   var bpmslug=TextEditingController();
   var   bpmseqno=TextEditingController();
- 
+ var periodservice=businessPeriodService();
  String? userId;
-
+ String? Sqno;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getdata();
+    SeqNo();
   }
 
   void getdata() async{
@@ -39,6 +40,14 @@ class _bussState extends State<Bussinesscrete> {
  
   }
 
+  SeqNo()async{
+ Sqno=await periodservice.GetSeqNo();
+ bpmseqno.text=Sqno!;
+ setState(() {
+   
+ });
+  }
+
   var bussinesperiodservice= businessPeriodService();
   @override
   Widget build(BuildContext context) {
@@ -47,9 +56,10 @@ class _bussState extends State<Bussinesscrete> {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade100,
         centerTitle: true,
-        title: Text("Categories"),
+        title: Text("Periods"),
       ),
-      body: Container(
+      body: Center(
+        child: Container(
         height: 300,
             width: 350,
            margin: EdgeInsets.fromLTRB(10, 80, 10, 80),
@@ -97,7 +107,7 @@ class _bussState extends State<Bussinesscrete> {
               ),
               onPressed: ()async{
 
-              var categary= businessPeriod(
+              var period= businessPeriod(
                 Id: "00000000000000000000" ,
                 adminId:userId.toString(),
                 BpmTitle: bpmtitle.text,
@@ -106,9 +116,9 @@ class _bussState extends State<Bussinesscrete> {
                 BpmIsActive: true,
                 BpmDelete: false,
               );
-              print(categary);
+              print(period);
              
-             var result=await bussinesperiodservice.create(categary);
+             var result=await bussinesperiodservice.create(period);
              Navigator.push(context,MaterialPageRoute(builder: (context) => Periodlist(),));
              setState(() {
                
@@ -120,6 +130,7 @@ class _bussState extends State<Bussinesscrete> {
           ],
         ),
       )
+      ),
       )
     );
   }

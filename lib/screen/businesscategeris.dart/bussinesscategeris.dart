@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopirox_app/models/admin/bussinesscategarios.dart';
-import 'package:shopirox_app/screen/businesscategeris.dart/categerioslist.dart';
+
 import 'package:shopirox_app/services/admin/categeriosService.dart';
 
 
